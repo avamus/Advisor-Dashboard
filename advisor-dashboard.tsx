@@ -10,6 +10,9 @@ import { Clock, Pencil, Star, ChevronRight, FileText, MessageCircle, LightbulbIc
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { SessionTabs } from "./session-tabs"
 import { Checkbox } from "@/components/ui/checkbox"
+import confetti from 'canvas-confetti'
+
+declare const confetti: any
 
 const getTopicDescription = (topic: string) => {
   switch (topic) {
@@ -191,7 +194,7 @@ export default function AdvisorDashboard() {
               <span>15 minutes with {selectedSession?.advisor || "Sarah"}</span>
             </div>
             <div className="space-y-2">
-              <h4 className="text-lg font-semibold text-[#5b06be] mb-3">Session Overview</h4>
+            <h4 className="text-2xl font-bold text-[#5b06be] mb-6">Session Overview</h4>
               <div className="w-full space-y-4">
                 <p className="text-gray-700 font-medium">{selectedSession?.advisorNotes}</p>
                 <ul className="list-disc list-inside space-y-2 text-gray-600">
@@ -240,7 +243,7 @@ export default function AdvisorDashboard() {
         return (
           <div className="space-y-6">
             <div className="max-h-[400px] overflow-y-auto p-6 bg-gray-50">
-              <h2 className="text-[#5b06be] text-xl font-semibold mb-6">Call Transcript</h2>
+            <h2 className="text-[#5b06be] text-2xl font-bold mb-6">Call Transcript</h2>
               {[
                 {
                   speaker: "You",
@@ -292,7 +295,7 @@ export default function AdvisorDashboard() {
         return (
           <div className="space-y-6">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-[#5b06be]">Your Notes</h2>
+            <h2 className="text-2xl font-bold text-[#5b06be] mb-6">Your Notes</h2>
               <Button
                 variant="ghost"
                 className="text-[#5b06be] hover:text-[#5b06be]/90 gap-2 font-medium"
@@ -336,9 +339,9 @@ export default function AdvisorDashboard() {
         )
       case "level-up":
         return (
-          <div className="space-y-8">
+          <div className="space-y-8 pb-6">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-[#5b06be]">Level Up Planning</h2>
+            <h2 className="text-2xl font-bold text-[#5b06be] mb-6">Level Up Planning</h2>
             </div>
 
             <div className="bg-[#f5f3ff] p-4 rounded-lg flex items-center justify-between">
@@ -414,17 +417,16 @@ export default function AdvisorDashboard() {
   }
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-[0_0_10px_rgba(0,0,0,0.1)] flex flex-col justify-between h-full space-y-6">
+    <div className="bg-white rounded-xl p-4 shadow-[0_0_10px_rgba(0,0,0,0.1)] flex flex-col justify-between h-full space-y-4">
       <ProgressBar />
-      {/* Avatar Selection and Session Start - Now full width */}
-      <Card className="bg-white rounded-3xl shadow-[0_0_10px_rgba(0,0,0,0.1)] w-full mb-6">
+      <Card className="bg-white rounded-3xl shadow-[0_0_10px_rgba(0,0,0,0.1)] w-full mb-4">
         {currentStage === 1 && (
-          <h2 className="text-2xl font-bold text-[#5b06be] mb-4 px-6 pt-6">
+          <h2 className="text-2xl font-bold text-[#5b06be] mb-2 px-6 pt-4">
             1. Select the avatar you want to speak with.
           </h2>
         )}
-        <CardHeader className="text-left space-y-4">{/* h2 element removed */}</CardHeader>
-        <div className="p-6 space-y-6">
+        <CardHeader className="text-left space-y-2 py-0">{/* h2 element removed */}</CardHeader>
+        <div className="px-6 space-y-2">
           {currentStage === 1 && (
             <div
               className={`w-full transition-opacity duration-300 ease-in-out ${isTransitioning ? "opacity-0" : "opacity-100"}`}
@@ -505,8 +507,8 @@ export default function AdvisorDashboard() {
             <div
               className={`w-full transition-opacity duration-300 ease-in-out ${isTransitioning ? "opacity-0" : "opacity-100"}`}
             >
-              <div className="space-y-8">
-                <div className="flex justify-between">
+              <div className="space-y-8 mt-6 pb-16">
+              <div className="flex justify-between">
                   <Button
                     onClick={() => {
                       setIsTransitioning(true)
@@ -550,7 +552,7 @@ export default function AdvisorDashboard() {
 
                 <h2 className="text-[#5b06be] text-2xl font-bold mb-6">2. Choose Topic</h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                   {mentalHealthTopics.map((category) => (
                     <div key={category.category} className="space-y-4">
                       <h3 className="text-xl font-semibold text-[#5b06be]">{category.category}</h3>
@@ -587,8 +589,8 @@ export default function AdvisorDashboard() {
                 isTransitioning ? "opacity-0" : "opacity-100"
               }`}
             >
-              <div className="space-y-6">
-                <div className="flex justify-between">
+              <div className="space-y-6 mt-6 pb-16">
+              <div className="flex justify-between">
                   <Button
                     onClick={() => {
                       setIsTransitioning(true)
@@ -638,10 +640,10 @@ export default function AdvisorDashboard() {
                   >
                     <Minus className="w6 h-6" />
                   </Button>
-                  <div className="flex flexcol items-center">
-                    <span className="text-4xl font-bold text-[#5b06be]">{sessionDuration}</span>
-                    <span className="text-sm text-gray-500 font-medium">minutes</span>
-                  </div>
+                  <div className="flex flex-col items-center">
+  <span className="text-4xl font-bold text-[#5b06be] mr-2">{sessionDuration}</span>
+  <span className="text-sm text-gray-500 font-medium">minutes</span>
+</div>
                   <Button
                     onClick={() => setSessionDuration(Math.min(60, sessionDuration + 5))}
                     className="bg-[#5b06be] text-white hover:bg-[#4a05a0] rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200"
@@ -649,21 +651,21 @@ export default function AdvisorDashboard() {
                     <Plus className="w-6 h-6" />
                   </Button>
                 </div>
-                <div className="flex justify-center w-full mb-6">
-                  <Button
-                    onClick={startSession}
-                    className="w-3/4 bg-gradient-to-r from-[#fbb350] to-[#f89b29] text-white hover:from-[#f89b29] hover:to-[#fbb350] rounded-xl py-8 px-8 font-bold text-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden group"
-                  >
-                    <span className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
-                    <div className="flex items-center justify-center gap-4">
-                      <Clock className="w-10 h-10 animate-pulse" />
-                      <span>Start Your {sessionDuration}-Minute Journey</span>
-                    </div>
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-600 mb-6 flex items-center justify-center">
-                  1 Minute of Session = 1 Credit
-                </p>
+                <div className="flex flex-col items-center gap-1 mb-10">  {/* Změněno z mb-6 na mb-10 pro větší mezeru */}
+  <Button
+    onClick={startSession}
+    className="w-3/4 bg-gradient-to-r from-[#fbb350] to-[#f89b29] text-white hover:from-[#f89b29] hover:to-[#fbb350] rounded-xl py-8 px-8 font-bold text-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden group"
+  >
+    <span className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+    <div className="flex items-center justify-center gap-4">
+      <Clock className="w-10 h-10 animate-pulse" />
+      <span>Start Your {sessionDuration}-Minute Journey</span>
+    </div>
+  </Button>
+  <p className="text-sm text-gray-600">
+    1 Minute of Session = 1 Credit
+  </p>
+</div>
               </div>
             </div>
           )}
@@ -672,10 +674,14 @@ export default function AdvisorDashboard() {
       {/* Tasks to complete */}
       <Card className="bg-white rounded-3xl shadow-[0_0_10px_rgba(0,0,0,0.1)] w-full mb-6">
         <CardHeader className="text-left space-y-4">
-          <h2 className="text-black text-2xl font-bold mb-4 flex itemscenter gap-2">
-            <CheckSquare className="w-6 h-6" />
-            Tasks to complete until the next session
-          </h2>
+        <h2 className="text-black text-2xl font-bold mb-4 flex items-center gap-2">
+  <img 
+    src="https://res.cloudinary.com/drkudvyog/image/upload/v1739728212/Tasks_to_complete_until_the_next_session_nctoak.png"
+    alt="Tasks icon"
+    className="w-6 h-6"
+  />
+  Tasks to complete until the next session
+</h2>
         </CardHeader>
         <div className="flex flex-col p-6 pt-0">
           <div className="bg-white rounded-xl p-6 shadow-[0_0_10px_rgba(0,0,0,0.1)] mb-6 flex flex-col justify-between h-full">
@@ -693,7 +699,7 @@ export default function AdvisorDashboard() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <span
-                        className={`text-lg font-medium ${checked ? "line-through text-green-500" : "text-gray-800"} block truncate`}
+                        className={`text-lg font-bold ${checked ? "line-through text-green-500" : "text-gray-800"} block truncate`}
                       >
                         {key === "practice-mindfulness" && "Practice mindfulness techniques"}
                         {key === "time-management" && "Implement time management strategies"}
@@ -719,12 +725,20 @@ export default function AdvisorDashboard() {
                     </div>
                   </div>
                   <Checkbox
-                    checked={checked}
-                    onCheckedChange={(isChecked) => {
-                        setCheckedItems((prev) => ({ ...prev, [key]: !prev[key] }))
-                      }}
-                    className="w-8 h-8 rounded-md border-4 border-[#fbb350] data-[state=checked]:bg-[#fbb350] data-[state=checked]:border-[#fbb350] text-white focus:ring-2 focus:ring-[#fbb350] focus:ring-offset-2 transition-all duration-200 ease-in-out [&>span]:text-white ml-4"
-                  />
+  checked={checked}
+  onCheckedChange={(isChecked) => {
+    setCheckedItems((prev) => ({ ...prev, [key]: !prev[key] }));
+    if (isChecked) {
+      (window as any).confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#fbb350', '#5b06be', '#00bf63']
+      });
+    }
+  }}
+  className="w-8 h-8 rounded-md border-4 border-[#fbb350] data-[state=checked]:bg-[#fbb350] data-[state=checked]:border-[#fbb350] text-white focus:ring-2 focus:ring-[#fbb350] focus:ring-offset-2 transition-all duration-200 ease-in-out [&>span]:text-white ml-4"
+/>
                 </div>
               ))}
             </div>
@@ -739,15 +753,19 @@ export default function AdvisorDashboard() {
           <CardHeader className="flex flex-col items-start gap-6 px-6 py-8 space-y-4">
             <div className="space-y-2 w-full">
               <div className="flex justify-between items-center">
-                <h2 className="text-black text-2xl font-bold mb-2 flex items-center gap-2">
-                  <History className="w-8 h-8" />
-                  Session History
-                </h2>
-                <Button
-                  onClick={toggleSortOrder}
-                  variant="outline"
-                  className="bg-white text-[#5b06be] hover:bg-[#5b06be] hover:text-white transition-colors duration-200 flex items-center gap-2 rounded-full px-4 py-2 shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.2)]"
-                >
+              <h2 className="text-black text-2xl font-bold mb-2 flex items-center gap-2">
+  <img 
+    src="https://res.cloudinary.com/drkudvyog/image/upload/v1739729499/Session_History_icon_duha_aoeoqv.png"
+    alt="Session History icon"
+    className="w-8 h-8"
+  />
+  Session History
+</h2>
+<Button
+  onClick={toggleSortOrder}
+  variant="outline"
+  className="bg-white text-[#5b06be] hover:bg-[#5b06be] hover:text-white transition-colors duration-200 flex items-center gap-2 rounded-full px-4 py-2 shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.2)] font-bold"
+>
                   Sort by Date
                   {sortOrder === "desc" ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
                 </Button>
