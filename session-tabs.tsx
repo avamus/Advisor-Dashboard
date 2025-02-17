@@ -1,6 +1,5 @@
 "use client"
 
-import { Book, FileText, Pencil, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface SessionTabsProps {
@@ -10,10 +9,26 @@ interface SessionTabsProps {
 
 export function SessionTabs({ selectedTab, onTabChange }: SessionTabsProps) {
   const tabs = [
-    { id: "overview", label: "Overview", icon: Book },
-    { id: "transcript", label: "Transcript", icon: FileText },
-    { id: "level-up", label: "Level Up Planning", icon: ChevronRight },
-    { id: "your-notes", label: "Your Notes", icon: Pencil },
+    { 
+      id: "overview", 
+      label: "Overview", 
+      icon: () => <img src="https://res.cloudinary.com/drkudvyog/image/upload/v1739739815/Session_overview_icon_duha_k6ul4i.png" alt="Overview icon" className="w-4 h-4" />
+    },
+    { 
+      id: "transcript", 
+      label: "Transcript", 
+      icon: () => <img src="https://res.cloudinary.com/drkudvyog/image/upload/v1739739869/Transcript_icon_duha_qtvfqy.png" alt="Transcript icon" className="w-4 h-4" />
+    },
+    { 
+      id: "level-up", 
+      label: "Level Up Planning", 
+      icon: () => <img src="https://res.cloudinary.com/drkudvyog/image/upload/v1739739984/Level_up_plan_icon_duha_i2zqfj.png" alt="Level Up Planning icon" className="w-4 h-4" />
+    },
+    { 
+      id: "your-notes", 
+      label: "Your Notes", 
+      icon: () => <img src="https://res.cloudinary.com/drkudvyog/image/upload/v1739740055/User_s_notes_icon_duha_cfevs9.png" alt="Your Notes icon" className="w-4 h-4" />
+    },
   ]
 
   return (
