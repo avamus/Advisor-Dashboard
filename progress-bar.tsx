@@ -56,8 +56,12 @@ const ProgressBar = () => {
             onClick={() => setIsCalendarOpen(true)}
             className="bg-white text-purple-700 hover:bg-purple-50 transition-all duration-200 rounded-2xl px-6 py-3 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 font-bold flex items-center space-x-2 h-[52px]"
           >
-            <CalendarIcon className="w-5 h-5" />
-            <span>Reschedule</span>
+<img 
+  src="https://res.cloudinary.com/drkudvyog/image/upload/v1734437402/calendar_icon_2_efgdme.png"
+  alt="Calendar icon"
+  className="w-5 h-5"
+/>
+<span>Reschedule</span>
           </Button>
         </div>
         <Button
