@@ -43,7 +43,7 @@ export function SessionTabs({ selectedTab, onTabChange }: SessionTabsProps) {
             aria-selected={selectedTab === tab.id}
             className={cn(
               "flex items-center justify-center gap-1 py-1.5 text-xs font-medium text-gray-600 border-b-2 border-transparent transition-colors duration-200 flex-1",
-              selectedTab === tab.id && "text-[#5b06be] border-[#5b06be]",
+              selectedTab === tab.id && "text-[#5b06be]ą border-[#5b06be]",
             )}
           >
             <Icon />
